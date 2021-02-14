@@ -19,7 +19,8 @@ DONOR_ISSN = 'issn'
 HOME_DONATION_SITE = 'home_donation_site'
 
 donorUpdatedOutput = []
-
+"""
+"""
 def createDonorIdentifier(donorRecord):
     try:
         date = datetime.datetime.strptime(donorRecord['dob'], '%d %b %Y')
@@ -36,19 +37,25 @@ def createDonorIdentifier(donorRecord):
     except Exception as ex:
         raise Exception(f'Exception occurred in createDonorIdentifier {ex}')
 
+"""
+"""
 def updateDonorId(donorRecord, donorId):
     donorRecord[DONOR_ID] = donorId
 
+"""
+"""
 def updateHomeDonationSite(donorRecord):
     index = int(donorRecord[DONOR_ORIGINAL_INDEX]) % len(DONATION_SITES)
     donorRecord[HOME_DONATION_SITE] = DONATION_SITES[index]
 
-
+"""
+"""
 def updateDonorOriginalIndex(donorRecord, index):
     if not (isinstance(index, int) or index.isnumeric()):
         raise Exception(f'Update Donor Original Index NaN: Index Must Be a Number {index}')
     donorRecord[DONOR_ORIGINAL_INDEX] = index
-
+"""
+"""
 def updateISSN(donorRecord):
     if len(donorRecord[DONOR_SSN]) < 11:
         raise Exception(f'Donor SSN Is Incomplete {donorRecord[DONOR_SSN]}')
