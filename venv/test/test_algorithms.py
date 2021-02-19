@@ -13,6 +13,7 @@ EXPECTED_VALUES = [
     ('0000000000000', '000000000000')
 ]
 
+
 sys.path.insert(1, '../src')
 
 from algorithms import mod_11_algorithm

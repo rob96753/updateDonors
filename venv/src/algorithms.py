@@ -19,6 +19,7 @@ def mod_11_algorithm(digits):
     # the remainder
     remainder = sum % 11
 
+
     # concatenate the remainder
     if remainder == 0:
         result = '0'

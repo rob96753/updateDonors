@@ -44,6 +44,7 @@ donorRecords = [
 
 ]
 
+
 def test_GetDonorIdentifier():
     for donorRecord in donorRecords:
         donorIdentifier = donorUpdate.createDonorIdentifier(donorRecord)
