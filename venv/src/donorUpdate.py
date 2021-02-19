@@ -2,6 +2,7 @@
 import json
 import datetime
 from algorithms import mod_11_algorithm
+import uuid
 
 DONOR_SOURCE = '/Users/rob/PycharmProjects/updateDonors/venv/data/donors-source/db.json'
 DONOR_DESTINATION = '/Users/rob/PycharmProjects/updateDonors/venv/data/db.json'
@@ -18,7 +19,8 @@ DONOR_SSN = 'ssn'
 DONOR_ISSN = 'issn'
 HOME_DONATION_SITE = 'home_donation_site'
 
-donorUpdatedOutput = []
+donorUpdatedOutput = {}
+uuids = []
 """
 """
 def createDonorIdentifier(donorRecord):
@@ -61,6 +63,14 @@ def updateISSN(donorRecord):
         raise Exception(f'Donor SSN Is Incomplete {donorRecord[DONOR_SSN]}')
     donorRecord[DONOR_ISSN] = donorRecord[DONOR_SSN].replace('-', '')
 
+def getUUID():
+    uuid4 = uuid.uuid4()
+    while uuid4 in uuids:
+        uuid4 = uuid.uuid4()
+    uuids.append(uuid4)
+    return uuid4
+
+
 def main():
     with open(DONOR_SOURCE, "r+") as fp:
         parsedData = json.load(fp)
@@ -70,7 +80,9 @@ def main():
                 updateDonorOriginalIndex(record, index)
                 updateHomeDonationSite(record)
                 updateISSN(record)
-                donorUpdatedOutput.append(record)
+                uuid4 = getUUID()
+
+                donorUpdatedOutput[str(uuid4)] = record
             except Exception as ex:
                 print(f'Exception Occurred in Record {index} {ex}')
 

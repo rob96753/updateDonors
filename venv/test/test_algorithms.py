@@ -30,6 +30,9 @@ def test_mod11AlgorithValueError():
         mod_11_algorithm('1996012A0128')
 
 #negative values should result in a ValueError
+
+
+
 def test_mod11AlgorithNegativeValue():
     with pytest.raises(ValueError) as error_info:
         mod_11_algorithm('-199601210128')
